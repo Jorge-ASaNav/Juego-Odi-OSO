@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Manzana.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/panal2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/panal1.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "roja",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 67.3647
+
+[node name="Manzana" type="Area2D" groups=["manzana"]]
+position = Vector2( 136, 102 )
+scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.88162, 8.24997 )
+scale = Vector2( 0.495536, 0.495536 )
+frames = SubResource( 1 )
+animation = "roja"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_Manzana_area_entered"]
